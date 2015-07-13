@@ -7,7 +7,7 @@ public class InstanceCompiler implements Opcodes {
 	public static InstanceCompiled compile(String cast) throws InstantiationException, IllegalAccessException
 	{
 		long id = i++;
-		String name = new StringBuilder("org/kucro3/ant/fastcast/AIC_").append(id).append(cast.replace(".", "")).toString();
+		String name = new StringBuilder("org/kucro3/ant/fastcast/AIC_").append(id).append(cast.replace(".", "_")).toString();
 		ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
 		
 		cw.visit(V1_7, ACC_PUBLIC + ACC_FINAL, name, null, "org/kucro3/ant/fastcast/AntInstanceCompiled", null);
