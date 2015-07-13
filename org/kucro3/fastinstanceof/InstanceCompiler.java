@@ -7,10 +7,10 @@ public class InstanceCompiler implements Opcodes {
 	public static InstanceCompiled compile(String cast) throws InstantiationException, IllegalAccessException
 	{
 		long id = i++;
-		String name = new StringBuilder("org/kucro3/ant/fastcast/AIC_").append(id).append(cast.replace(".", "_")).toString();
+		String name = new StringBuilder("org/kucro3/ant/fastcast/I").append(id).append(cast.replace(".", "_")).toString();
 		ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
 		
-		cw.visit(V1_7, ACC_PUBLIC + ACC_FINAL, name, null, "org/kucro3/ant/fastcast/AntInstanceCompiled", null);
+		cw.visit(V1_7, ACC_PUBLIC + ACC_FINAL, name, null, "org/kucro3/ant/fastcast/InstanceCompiled", null);
 		
 		constructor(cw);
 		checkcast(cw, cast);
@@ -36,7 +36,7 @@ public class InstanceCompiler implements Opcodes {
 	{
 		MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null);
 		mv.visitIntInsn(ALOAD, 0);
-		mv.visitMethodInsn(INVOKESPECIAL, "org/kucro3/ant/fastcast/AntInstanceCompiled", "<init>", "()V", false);
+		mv.visitMethodInsn(INVOKESPECIAL, "org/kucro3/ant/fastcast/InstanceCompiled", "<init>", "()V", false);
 		mv.visitInsn(RETURN);
 		mv.visitMaxs(1, 1);
 		mv.visitEnd();
